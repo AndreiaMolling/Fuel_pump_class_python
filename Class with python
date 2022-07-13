@@ -1,0 +1,56 @@
+from ast import Break
+
+
+class FuelPump():
+
+    def __init__(self, fuelPrice, fuelQuantity):
+        self.fuelPrice = fuelPrice
+        self.fuelQuantity = fuelQuantity
+        if (fuelPrice or fuelQuantity) < 0:
+            print('Error, valor must be positive') 
+            exit()
+              
+    def get_fuelPrice(self):
+        return self.fuelPrice
+
+    def set_fuelPrice(self,fuelPrice):
+        self.fuelPrice = fuelPrice
+
+    def get_fuelQuantity(self):
+        return self.fuelQuantity 
+
+    def set_fuelQuantity(self,fuelQuantity):
+        self.fuelQuantity= fuelQuantity
+
+    def fillWithPrice(self,price):
+        if price < 0:
+            print("Valor must be positive")
+        else:
+            if (price and self.fuelQuantity != 0):
+                litros = (price/self.fuelPrice)
+                if litros > self.fuelQuantity:
+                    print('Not enough quantity')
+                    exit()
+                else:
+                    print (litros, 'liters were pumped')
+                    self.fuelQuantity = self.fuelQuantity - litros
+            else:
+                print ("Quantity = 0 or price wasn't enough")
+                exit() 
+        return 
+
+    def fillWithLiters(self, liters): 
+        if liters < 0:
+            print("Valor must be positive")
+            exit()
+        if (self.fuelPrice and self.fuelQuantity != 0) and (liters <= self.fuelQuantity) :
+            quantidade = (liters*self.fuelPrice)
+            print('for',liters,'liters',quantidade,'is final price')
+            self.fuelQuantity = self.fuelQuantity - liters
+        else:
+            print ("Quantity = 0 or smaller than the chosen one, or price wasn't defined")
+            exit()
+        return
+        
+    def resume(self):
+        print('Quantity of fuel is', self.fuelQuantity)
